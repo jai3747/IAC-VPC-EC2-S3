@@ -34,11 +34,6 @@ resource "aws_route_table" "public_rt" {
   }
 }
 
- tags = {
-    Name = "${var.vpc_name}-public-rt"
-  }
-
-
 resource "aws_route_table_association" "public_association" {
   count          = length(var.public_subnet_cidr_blocks)
   subnet_id      = element(aws_subnet.public_subnet[*].id, count.index)
